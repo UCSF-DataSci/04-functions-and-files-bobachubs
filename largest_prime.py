@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+from fibonnaci import generate_fibonacci
+
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("--l", dest='limit', type=int, help='specify upper limit for Fibonacci', default=1)
+args = parser.parse_args()
+upper_limit = args.limit
+
 """
 Largest Prime Fibonacci Number
 
@@ -12,3 +20,23 @@ Task: Find the largest prime Fibonacci number less that 50000
 """
 
 # You're on your own for this one. Good luck!
+
+def is_prime(n):
+    if (n < 2):
+        return False
+    for factor in range(2,n):
+        if (n % factor == 0):
+            return False
+    return True
+
+
+if __name__ == "__main__":
+    # Do stuff here
+	fibs = generate_fibonacci(upper_limit)
+	for fib in reversed(fibs):
+		if is_prime(fib):
+			print(fib)
+			break
+	print("Done!")
+	# 28657
+	
